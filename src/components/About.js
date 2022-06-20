@@ -83,6 +83,7 @@ function About({data, findLinkName, fetchData}) {
 						></iframe>
 					</div>
 				</div>
+				}
 			</>
 		)
 }

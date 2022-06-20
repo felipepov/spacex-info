@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import Main from './Main';
 
 function History({ data, fetchData, findLinkName }) {
-	let historyList;
-
+	
 	useEffect(() => {
 		console.log('History page intiliazed');
 		fetchData('history');

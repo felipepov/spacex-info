@@ -1,4 +1,9 @@
 function Data({ data, name}) {
+    let display = 'd-none';
+	if (name.length > 0){
+		display = ''
+    }
+    
     function numFormatter(num) {
         if(num > 1000000000){
             return (num/1000000000).toFixed(1) + 'B'; // convert to B for number from > 1 billion 
@@ -12,7 +17,7 @@ function Data({ data, name}) {
     }
     return (
         <>
-        <div className="card text-center w-100 px-md-2 py-3 h-100 align-items-center justify-content-center">
+        <div className={`${display} card text-center w-100 px-md-2 py-3 h-100 align-items-center justify-content-center`}>
             <p className="lead">{name}</p>
             <h2>{name === 'Valuation'  ? '$' : ''}{numFormatter(data)}</h2>
         </div>

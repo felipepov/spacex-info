@@ -24,18 +24,18 @@ function App() {
 
 	const fetchData = async (query = '') => {
 		console.log(`Fetching ${query} data`);
+		setData({})
 		try {
 			const res = await fetch(`https://api.spacexdata.com/v4/${query}`);
 			const data = await res.json();
 			setData(data);
-			return data;
 		} catch (err) {
-			console.log(`Error fetching ${query} data`);
+			alert(`Error fetching ${query} data, try again later`);
 		}
 	};
 
 	const findLinkName = (list = {}, query = '') => {
-		if (Object.keys(list).length) {
+		if (list &  query & Object.keys(list).length & Object.values(list).length) {
 			let myStr = Object.keys(list)[
 				Object.values(list).findIndex((el) => el === query)
 			].replaceAll('_', ' ');
@@ -74,13 +74,13 @@ function App() {
 								</Nav.Link>
 							</Nav.Item>
 							<Nav.Item id="link-3">
-								<Nav.Link as={Link} to="/launch%20sites">
+								<Nav.Link as={Link} to="/launch_sites">
 									Launch Sites
 								</Nav.Link>
 							</Nav.Item>
 						</Container>
 					</Navbar>
-					{data && (
+					{data !== null && (
 						<div>
 							<Routes>
 								<Route
@@ -100,15 +100,15 @@ function App() {
 								<Route
 									path="/vehicles"
 									exact
-									element={<Vehicles data={data} findLinkName={findLinkName} />}
+									element={<Vehicles data={data} findLinkName={findLinkName} fetchData={fetchData}/>}
 								/>
 							</Routes>
 							<Routes>
 								<Route
-									path="/launch%20sites"
+									path="/launch_sites"
 									exact
 									element={
-										<LaunchSites data={data} findLinkName={findLinkName} />
+										<LaunchSites data={data} findLinkName={findLinkName} fetchData={fetchData}/>
 									}
 								/>
 							</Routes>{' '}
