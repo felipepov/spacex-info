@@ -1,16 +1,18 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Main from './Main';
 
 function History({ data, fetchData, findLinkName }) {
-	
+	const [loaded, setLoaded] = useState(false);
+
 	useEffect(() => {
 		console.log('History page intiliazed');
-		fetchData('history');
+		setLoaded(fetchData('history'));
 	}, []);
 
 	return (
 		<>
-			<div className="row flex-column justify-content-center g-1 mt-1">
+		{loaded && 
+			(<div className="row flex-column justify-content-center g-1 mt-1">
 				{data.length > 0 
 				? data.map((item, index) => {
 					return (
@@ -27,7 +29,8 @@ function History({ data, fetchData, findLinkName }) {
 					);
 				})
 			: ''}
-			</div>
+			</div>)
+			}
 		</>
 	);
 }

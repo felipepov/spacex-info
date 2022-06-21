@@ -1,7 +1,6 @@
 function Main({ name, summary, website, linkName, date, img, id}) {
 	let display = 'd-none';
 	if (name.length){
-		console.log(name)
 		display = ''
 	}
 	return (

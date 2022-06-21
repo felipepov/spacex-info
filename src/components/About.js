@@ -1,22 +1,25 @@
 import Main from './Main';
 import Data from './Data';
-import {useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
-function About({data, findLinkName, fetchData}) {
+function About({ data, findLinkName, fetchData }) {
+	const [loaded, setLoaded] = useState(false);
+
 	useEffect(() => {
-		console.log('Company page intiliazed')
-		fetchData('company');
+		console.log('Company page intiliazed');
+		setLoaded(fetchData('company'));
 	}, []);
 
-		return (
-			<>
+	return (
+		<>
+			{loaded && (
 				<div className="row justify-content-center g-1 mt-1">
 					<div className="col-6 col-md-6 flex-fill">
 						<Main
 							name={data.name}
 							summary={data.summary}
 							website={data.links?.website}
-							linkName={findLinkName(data.links, data.links?.website)} 
+							linkName={findLinkName(data.links, data.links?.website)}
 						/>
 					</div>
 					<div className="col-md-6 flex-fill">
@@ -43,6 +46,8 @@ function About({data, findLinkName, fetchData}) {
 						</div>
 					</div>
 				</div>
+			)}
+			{loaded && (
 				<div className="row justify-content-between gx-1 mt-1">
 					<div className="col-md-6 flex-fill">
 						<div className="row justify-content-evenly gx-1 align-items-stretch ">
@@ -83,9 +88,9 @@ function About({data, findLinkName, fetchData}) {
 						></iframe>
 					</div>
 				</div>
-				}
-			</>
-		)
+			)}
+		</>
+	);
 }
 
 About.defaultProps = {

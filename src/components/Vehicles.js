@@ -1,16 +1,19 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Data from './Data';
 import Main from './Main';
 
 function Vehicles({ data, fetchData, findLinkName }) {
+	const [loaded, setLoaded] = useState(false);
+
 	useEffect(() => {
 		console.log('Vehicles page intiliazed');
-		fetchData('ships');
+		setLoaded(fetchData('ships'));
 	}, []);
 
 	return (
 		<>
-			<div className="row justify-content-center g-1 mt-1">
+		{loaded &&
+			(<div className="row justify-content-center g-1 mt-1">
                 {data.length > 0 
 				? data.map((item, index) => {
 					return (
@@ -45,7 +48,8 @@ function Vehicles({ data, fetchData, findLinkName }) {
 					);
 				})
 			: ''}
-			</div>
+			</div>)
+			}
 		</>
 	);
 }

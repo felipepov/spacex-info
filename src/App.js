@@ -11,26 +11,23 @@ import { Link } from 'react-router-dom';
 
 function App() {
 	const [data, setData] = useState(null);
-	// const [page, setPage] = useState('company')
+
 	useEffect(() => {
 		console.log('App intiliazed');
 		fetchData('company')
 	}, []);
 
-	// useEffect(() => {
-	// 	console.log('Page updated')
-	// 	fetchData(page)
-	// }, [page]);
-
 	const fetchData = async (query = '') => {
 		console.log(`Fetching ${query} data`);
-		setData({})
+		setData(false)
 		try {
 			const res = await fetch(`https://api.spacexdata.com/v4/${query}`);
 			const data = await res.json();
 			setData(data);
+			return data;
 		} catch (err) {
 			alert(`Error fetching ${query} data, try again later`);
+			return false;
 		}
 	};
 
@@ -111,7 +108,7 @@ function App() {
 										<LaunchSites data={data} findLinkName={findLinkName} fetchData={fetchData}/>
 									}
 								/>
-							</Routes>{' '}
+							</Routes>
 						</div>
 					)}
 				</div>
