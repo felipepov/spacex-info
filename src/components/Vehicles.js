@@ -19,7 +19,7 @@ function Vehicles({ data, fetchData, findLinkName }) {
 				? data.map((item, index) => {
 					return (
                         <>
-                        <div className="col-12 col-md-9  p-0 flex-fill">
+                        <div className="col-12 col-md-9 flex-fill">
 						<Main
 							name={`${item.name}${item.legacy_id ? ' (' + item.legacy_id + ')': ''}`}
 							summary={`${item.type ? item.name : ''} ${item.type ? 'is a ' + item.type + ' ship' : ''} ${item.model ? 'model' + item.model : ''} ${item.model ? 'built in ' + item.year_built : ''} ${item.home_port ? 'with its home port in ' + item.home_port : ''}. ${item.roles ? `Its roles are: ${Object.values(item.roles).join(', ')}` : ''}`}
@@ -32,17 +32,17 @@ function Vehicles({ data, fetchData, findLinkName }) {
 						/>
                         </div>
                         <div className={`col col-md-3 flex-fill`}>
-                            <div className="d-flex justify-content-between w-100 h-100 flex-fill">
-                            <Data 
+                            <div className="row gx-1 justify-content-between w-100 h-100 flex-fill">
+                            <div className="col"> <Data 
                                 name="Launches"
                                 data={item.launches ? item.launches.length : false}
                                 key={`${index}.${index++}`}
-                            />
-                            {item.mass_kg && <Data 
+                            /></div>
+                            {item.mass_kg && <div className="col "><Data 
                                 name="Mass"
                                 data={item.mass_kg}
                                 key={`${index}.0${index++}`}
-                            />}
+                            /></div>}
                             </div>
                         </div>
                         </>

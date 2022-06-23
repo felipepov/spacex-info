@@ -17,7 +17,7 @@ function Data({ data, name}) {
     }
     return (
         <>
-        <div className={`${display} card text-center w-100 px-md-2 py-3 h-100 align-items-center justify-content-center`}>
+        <div className={`${display} border shadow-sm card text-center w-100 px-md-2 py-3 h-100 align-items-center justify-content-center`}>
             <p className="lead">{name}</p>
             <h2>{name === 'Valuation'  ? '$' : ''}{numFormatter(data)}</h2>
         </div>

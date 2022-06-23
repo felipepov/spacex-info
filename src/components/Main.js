@@ -4,7 +4,7 @@ function Main({ name, summary, website, linkName, date, img, id}) {
 		display = ''
 	}
 	return (
-		<div className={`card h-100 justify-content-center ${display}`} key={id}>
+		<div className={`card border hadow-sm h-100 justify-content-center ${display}`} key={id}>
 			<div className="row g-0 text-dark ">
 				{img && (
 					<div className="col col-md-4 bg-secondary border-alert border">
