@@ -8,7 +8,7 @@ function About({ data, findLinkName, fetchData }) {
 	useEffect(() => {
 		console.log('Company page intiliazed');
 		setLoaded(fetchData('company'));
-	}, []);
+	}, [fetchData]);
 
 	return (
 		<>

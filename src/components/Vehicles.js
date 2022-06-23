@@ -8,7 +8,8 @@ function Vehicles({ data, fetchData, findLinkName }) {
 	useEffect(() => {
 		console.log('Vehicles page intiliazed');
 		setLoaded(fetchData('ships'));
-	}, []);
+		// eslint-disable-next-line
+	}, [fetchData]);
 
 	return (
 		<>
@@ -18,7 +19,7 @@ function Vehicles({ data, fetchData, findLinkName }) {
 				? data.map((item, index) => {
 					return (
                         <>
-                        <div className="col-9 p-0 flex-fill">
+                        <div className="col-12 col-md-9  p-0 flex-fill">
 						<Main
 							name={`${item.name}${item.legacy_id ? ' (' + item.legacy_id + ')': ''}`}
 							summary={`${item.type ? item.name : ''} ${item.type ? 'is a ' + item.type + ' ship' : ''} ${item.model ? 'model' + item.model : ''} ${item.model ? 'built in ' + item.year_built : ''} ${item.home_port ? 'with its home port in ' + item.home_port : ''}. ${item.roles ? `Its roles are: ${Object.values(item.roles).join(', ')}` : ''}`}
@@ -30,7 +31,7 @@ function Vehicles({ data, fetchData, findLinkName }) {
 							img={item.image}
 						/>
                         </div>
-                        <div className={`col-3 flex-fill`}>
+                        <div className={`col col-md-3 flex-fill`}>
                             <div className="d-flex justify-content-between w-100 h-100 flex-fill">
                             <Data 
                                 name="Launches"

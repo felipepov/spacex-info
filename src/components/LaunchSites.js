@@ -8,7 +8,7 @@ function LaunchSites({ data, fetchData, findLinkName }) {
 	useEffect(() => {
 		console.log('Launch sites page intiliazed');
 		setLoaded(fetchData('launchpads'));
-	}, []);
+	}, [fetchData]);
 
 	return (
 		<>
@@ -58,7 +58,7 @@ function LaunchSites({ data, fetchData, findLinkName }) {
 														name="Site"
 													/>
 												</div>
-                                                <div className="col-md-6 flex-fill rounded">
+                                                <div className="col-md-6 flex-fill rounded mt-1 mt-md-0">
 											<iframe
 												title={item.name}
 												className="w-100 h-100 bg-light rounded"

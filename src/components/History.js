@@ -7,7 +7,7 @@ function History({ data, fetchData, findLinkName }) {
 	useEffect(() => {
 		console.log('History page intiliazed');
 		setLoaded(fetchData('history'));
-	}, []);
+	}, [fetchData]);
 
 	return (
 		<>

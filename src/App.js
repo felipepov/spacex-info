@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import About from './components/About';
 import History from './components/History';
 import LaunchSites from './components/LaunchSites';
@@ -12,12 +12,7 @@ import { Link } from 'react-router-dom';
 function App() {
 	const [data, setData] = useState(null);
 
-	useEffect(() => {
-		console.log('App intiliazed');
-		fetchData('company')
-	}, []);
-
-	const fetchData = async (query = '') => {
+	const fetchData = useCallback (async (query = '') => {
 		console.log(`Fetching ${query} data`);
 		setData(false)
 		try {
@@ -29,10 +24,15 @@ function App() {
 			alert(`Error fetching ${query} data, try again later`);
 			return false;
 		}
-	};
+	}, []);
+	
+	useEffect(() => {
+		console.log('App intiliazed');
+		fetchData('company')
+	}, [fetchData]);
 
 	const findLinkName = (list = {}, query = '') => {
-		if (list &  query & Object.keys(list).length & Object.values(list).length) {
+		if (query && Object.keys(list).length > 0) {
 			let myStr = Object.keys(list)[
 				Object.values(list).findIndex((el) => el === query)
 			].replaceAll('_', ' ');
@@ -42,7 +42,7 @@ function App() {
 				.map((word) => word.charAt(0).toUpperCase() + word.substring(1))
 				.join(' ');
 		} else {
-			return false;
+			return 'Link';
 		}
 	};
 	return (
@@ -51,8 +51,8 @@ function App() {
 				<div className="container my-4 g-0">
 					<Navbar
 						className="text-uppercase fs-3 fw-bold rounded-top"
-						bg="light"
-						defaultActiveKey="/home"
+						bg="light" variant="primary"
+						defaultactivekey="/"
 					>
 						<Container className=" text-decoration-none justify-content-evenly gx-1 nav-fill">
 							<Nav.Item id="home">
@@ -60,6 +60,7 @@ function App() {
 									About SpaceX
 								</Nav.Link>
 							</Nav.Item>
+							
 							<Nav.Item>
 								<Nav.Link as={Link} to="/history">
 									History
