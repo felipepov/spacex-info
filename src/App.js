@@ -12,9 +12,9 @@ import { Link } from 'react-router-dom';
 function App() {
 	const [data, setData] = useState(null);
 
-	const fetchData = useCallback (async (query = '') => {
+	const fetchData = useCallback(async (query = '') => {
 		console.log(`Fetching ${query} data`);
-		setData(false)
+		setData(false);
 		try {
 			const res = await fetch(`https://api.spacexdata.com/v4/${query}`);
 			const data = await res.json();
@@ -25,10 +25,10 @@ function App() {
 			return false;
 		}
 	}, []);
-	
+
 	useEffect(() => {
 		console.log('App intiliazed');
-		fetchData('company')
+		fetchData('company');
 	}, [fetchData]);
 
 	const findLinkName = (list = {}, query = '') => {
@@ -50,32 +50,46 @@ function App() {
 			<section className="">
 				<div className="container my-4 g-0">
 					<Navbar
-						className="text-uppercase fs-3 fw-bold rounded-top"
-						bg="light" variant="primary"
+						className="text-uppercase fs-3 fw-bold rounded-top navbar-lights"
+						bg="light"
+						variant="light"
 						defaultactivekey="/"
+						expand="lg"
 					>
-						<Container className=" text-decoration-none justify-content-evenly gx-1 nav-fill">
-							<Nav.Item id="home">
-								<Nav.Link as={Link} to="/">
-									About SpaceX
-								</Nav.Link>
-							</Nav.Item>
-							
-							<Nav.Item>
-								<Nav.Link as={Link} to="/history">
-									History
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item id="link-2">
-								<Nav.Link as={Link} to="/vehicles">
-									Vehicles
-								</Nav.Link>
-							</Nav.Item>
-							<Nav.Item id="link-3">
-								<Nav.Link as={Link} to="/launch_sites">
-									Launch Sites
-								</Nav.Link>
-							</Nav.Item>
+						<Container className=" text-decoration-none gx-md-1 gx-0 nav-fill">
+							<Navbar.Brand href="#home" className="">
+								{' '}
+								<img
+									src="./logo.png"
+									width="240"
+									className="d-inline-block align-top ps-4"
+									alt="React Bootstrap logo"
+								/>
+							</Navbar.Brand>
+							<Navbar.Toggle aria-controls="responsive-navbar-nav" className="me-4" />
+							<Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+								<Nav.Item id="home">
+									<Nav.Link as={Link} to="/">
+										About
+									</Nav.Link>
+								</Nav.Item>
+
+								<Nav.Item>
+									<Nav.Link as={Link} to="/history">
+										History
+									</Nav.Link>
+								</Nav.Item>
+								<Nav.Item id="link-2">
+									<Nav.Link as={Link} to="/vehicles">
+										Vehicles
+									</Nav.Link>
+								</Nav.Item>
+								<Nav.Item id="link-3">
+									<Nav.Link as={Link} to="/launch_sites">
+										Launch Sites
+									</Nav.Link>
+								</Nav.Item>
+							</Navbar.Collapse>
 						</Container>
 					</Navbar>
 					{data !== null && (
@@ -84,21 +98,39 @@ function App() {
 								<Route
 									path="/"
 									exact
-									element={<About data={data} findLinkName={findLinkName} fetchData={fetchData}/>}
+									element={
+										<About
+											data={data}
+											findLinkName={findLinkName}
+											fetchData={fetchData}
+										/>
+									}
 								/>
 							</Routes>
 							<Routes>
 								<Route
 									path="/history"
 									exact
-									element={<History data={data} findLinkName={findLinkName} fetchData={fetchData}/>}
+									element={
+										<History
+											data={data}
+											findLinkName={findLinkName}
+											fetchData={fetchData}
+										/>
+									}
 								/>
 							</Routes>
 							<Routes>
 								<Route
 									path="/vehicles"
 									exact
-									element={<Vehicles data={data} findLinkName={findLinkName} fetchData={fetchData}/>}
+									element={
+										<Vehicles
+											data={data}
+											findLinkName={findLinkName}
+											fetchData={fetchData}
+										/>
+									}
 								/>
 							</Routes>
 							<Routes>
@@ -106,7 +138,11 @@ function App() {
 									path="/launch_sites"
 									exact
 									element={
-										<LaunchSites data={data} findLinkName={findLinkName} fetchData={fetchData}/>
+										<LaunchSites
+											data={data}
+											findLinkName={findLinkName}
+											fetchData={fetchData}
+										/>
 									}
 								/>
 							</Routes>

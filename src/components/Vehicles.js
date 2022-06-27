@@ -14,7 +14,7 @@ function Vehicles({ data, fetchData, findLinkName }) {
 	return (
 		<>
 		{loaded &&
-			(<div className="row justify-content-center g-1 mt-1">
+			(<div className="row justify-content-center gx-1 gx-md-2 gy-1 mt-1">
                 {data.length > 0 
 				? data.map((item, index) => {
 					return (
@@ -31,14 +31,14 @@ function Vehicles({ data, fetchData, findLinkName }) {
 							img={item.image}
 						/>
                         </div>
-                        <div className={`col col-md-3 flex-fill`}>
-                            <div className="row gx-1 justify-content-between w-100 h-100 flex-fill">
+                        <div className="col col-md-3 p-md-0">
+                            <div className="row g-0 justify-content-between h-100">
                             <div className="col"> <Data 
                                 name="Launches"
                                 data={item.launches ? item.launches.length : false}
                                 key={`${index}.${index++}`}
                             /></div>
-                            {item.mass_kg && <div className="col "><Data 
+                            {item.mass_kg && <div className="col ms-1"><Data 
                                 name="Mass"
                                 data={item.mass_kg}
                                 key={`${index}.0${index++}`}
