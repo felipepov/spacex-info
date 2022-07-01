@@ -50,25 +50,24 @@ function App() {
 			<section className="">
 				<div className="container my-4 g-0">
 					<Navbar
-						className="text-uppercase fs-3 fw-bold rounded-top navbar-lights"
+						className="fs-3 fw-bold rounded-top navbar-lights"
 						bg="light"
 						variant="light"
 						defaultactivekey="/"
 						expand="lg"
 					>
-						<Container className=" text-decoration-none gx-md-1 gx-0 nav-fill">
+						<Container className=" text-decoration-none gx-md-1 gx-0">
 							<Navbar.Brand href="#home" className="">
-								{' '}
 								<img
 									src="./logo.png"
-									width="240"
-									className="d-inline-block align-top ps-4"
-									alt="React Bootstrap logo"
+									className="d-inline-block align-top ps-4 me-3 "
+									alt="SpaceX"
 								/>
+								 Infopage
 							</Navbar.Brand>
 							<Navbar.Toggle aria-controls="responsive-navbar-nav" className="me-4" />
-							<Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-								<Nav.Item id="home">
+							<Navbar.Collapse id="responsive-navbar-nav" className="justify-content-evenly ">
+								<Nav.Item id="home" >
 									<Nav.Link as={Link} to="/">
 										About
 									</Nav.Link>
