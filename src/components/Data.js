@@ -1,7 +1,12 @@
+import PlaceHolderData from "./PlacerHolderData";
+
 function Data({ data, name}) {
     let display = 'd-none';
-	if (name.length > 0){
-		display = ''
+
+    if (typeof data === 'number' && data > 0){
+        display = ''
+    } else if (typeof data === 'string' && !data.includes('undefined')) {
+        display = ''
     }
     
     function numFormatter(num) {
@@ -17,6 +22,7 @@ function Data({ data, name}) {
     }
     return (
         <>
+        <PlaceHolderData data={data} />
         <div className={`${display} border shadow-sm card text-center w-100 px-md-2 py-3 h-100 align-items-center justify-content-center`}>
             <p className="lead">{name}</p>
             <h2>{name === 'Valuation'  ? '$' : ''}{numFormatter(data)}</h2>

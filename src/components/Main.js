@@ -1,9 +1,13 @@
+import PlaceHolderMain from "./PlaceHolderMain";
+
 function Main({ name, summary, website, linkName, date, img, id}) {
 	let display = 'd-none';
 	if (name.length){
-		display = ''
+		display = '';
 	}
 	return (
+		<>
+		<PlaceHolderMain name={name} />
 		<div className={`card border hadow-sm h-100 justify-content-center ${display}`} key={id}>
 			<div className="row g-0 text-dark ">
 				{img && (
@@ -23,6 +27,7 @@ function Main({ name, summary, website, linkName, date, img, id}) {
 				</div>
 			</div>
 		</div>
+		</>
 	);
 }
 
